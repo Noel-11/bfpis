@@ -8,10 +8,9 @@
 
         <div class="card-header">
             <div class="row">
-                <div class="col-lg-4">
-                </div>
-                <div class="col-lg-4">
-
+                <%--<div class="col-lg-4">
+                </div>--%>
+                <div class="col-lg-8">
                     <h2 class="text-success">Barangay Profile Record</h2>
                 </div>
 
@@ -30,7 +29,7 @@
                     <div class="row mt-2">
                         <div class="col-md-4 mb-1">
                             <div class="input-group">
-                                <span runat="server" id="lblApplicationNameLabel" class="input-group-text border-secondary" style="background-color: white; color: black">Search</span>
+                                <span runat="server" id="lblApplicationNameLabel" class="input-group-text border-secondary" style="background-color: white; color: black">Last Name</span>
                                 <asp:TextBox runat="server" ID="txtSearchLName" CssClass="input-field form-control border-secondary" Style="text-transform: uppercase" MaxLength="50" placeholder="" onkeyup="clickEnterSearch('ctl00_cpConTent_btnSearch');"></asp:TextBox>
 
                             </div>

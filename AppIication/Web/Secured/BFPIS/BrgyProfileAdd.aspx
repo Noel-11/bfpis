@@ -10,14 +10,14 @@
             <div class="row">
 
                 <div class="col-lg-4">
-                    <button runat="server" id="btnHome" class="btn btn-primary"><i class="bi bi-chevron-double-left"></i>&nbsp;Back</button>
+                    <button type="button" runat="server" id="btnHome" class="btn btn-primary"><i class="bi bi-chevron-double-left"></i>&nbsp;Back</button>
                 </div>
 
                 <div class="col-lg-4">
                     <h2 class="text-success">Profile Details</h2>
                 </div>
 
-            </div>
+            </div> 
 
         </div>
 
@@ -210,7 +210,7 @@
                                 <ContentTemplate>
                                     <div class="card-header bg-success text-light">
                                         <span runat="server" id="span1" style="font-weight: bold;">MEMBER LIST</span>
-                                        <button runat="server" class="btn btn-info" id="btnAddService" tooltip="Click to Add Service"><i class="bi bi-plus-square"></i>&nbsp;</button>
+                                        <button type="button" runat="server" class="btn btn-info" id="btnAddService" tooltip="Click to Add Service"><i class="bi bi-plus-square"></i>&nbsp;</button>
 
                                     </div>
 
@@ -313,6 +313,7 @@
                                         <asp:DropDownList runat="server" CssClass="form-select" ID="ddlMemberRelation">
                                         </asp:DropDownList>
                                     </div>
+                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlMemberRelation" SetFocusOnError="true" Font-Italic="true" Font-Size="10pt" Display="Dynamic" Text="Relation is required" ValidationGroup="DOCMEMBER" />
 
                                 </div>
 
@@ -335,6 +336,7 @@
                                         <asp:DropDownList runat="server" CssClass="form-select" ID="ddlMemberSex">
                                         </asp:DropDownList>
                                     </div>
+                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlMemberSex" SetFocusOnError="true" Font-Italic="true" Font-Size="10pt" Display="Dynamic" Text="Sex is required" ValidationGroup="DOCMEMBER" />
 
                                 </div>
                             </div>

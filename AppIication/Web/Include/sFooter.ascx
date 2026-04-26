@@ -50,17 +50,17 @@
                             <div class="client-info">
                                <%-- <img src="<%=ResolveClientUrl("~/Images/clenro.png")%>" alt="CLENRO Logo" width="50" />--%>
 
-                                <h3>PEOPLE'S DAY INFORMATION SYSTEM</h3>
-                                <p>The Cagayan de Oro City People’s Day Information System is a digital platform designed to record, monitor, and 
+                                <h3>BARANGAY FAMILY PROFILE INFORMATION SYSTEM</h3>
+                                <p>BFPIS is a system designed to record and monitor updated socioeconomic status 
                                     <span id="dots" style="display: block">...</span>
-                                    <span id="more"> streamline the delivery of medical and financial assistance to the citizens of CDO..
+                                    <span id="more"> of each Family on each barangay of Cagayan de Oro City.
                                         <br />
                                         <br />
                                         
                                     </span>
                                 </p>
                                 <button type="button" id="myBtn" onclick="myFunction()">Read more</button>
-                                <h5 class="pb-3 fs-5">CITY MAYORS OFFICE</h5>
+                                <h5 class="pb-3 fs-5">CITY SOCIAL WELFARE AND DEVELOPMENT DEPARTMENT</h5>
                                 <p>
                                     <%--<strong>Vision:</strong> Shall be the most highly competitive ICT organization in the City Government of Cagayan de Oro.
                                     <br />

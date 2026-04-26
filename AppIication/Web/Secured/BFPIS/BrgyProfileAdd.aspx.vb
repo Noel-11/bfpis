@@ -51,6 +51,7 @@ Partial Class Secured_BFPIS_BrgyProfileAdd
         _clsDB.populateDDLB(ddlMemberRelation, "relation_desc", "trans_id", "tbl_ref_relation", "sort_order", " WHERE is_active = 'Y' ", , "")
 
         _clsDB.populateDDLB(ddlMemberSex, "description", "trans_id", "tbl_ref_sex", "sort_order", " WHERE is_active = 'Y' ", , "")
+        ddlMemberSex.Items.RemoveAt(0)
 
 
     End Sub
@@ -240,10 +241,17 @@ Partial Class Secured_BFPIS_BrgyProfileAdd
         thisMsgBox.showConfirmBox()
     End Sub
 
-#Region "SERVICES"
+#Region "FAMILY"
 
     Protected Sub btnAddService_ServerClick(sender As Object, e As EventArgs) Handles btnAddService.ServerClick
         hfMemberId.Value = ""
+
+        txtMemberLName.Text = ""
+        txtMemberFName.Text = ""
+        txtMemberMName.Text = ""
+        ddlMemberExt.SelectedValue = ""
+        ddlMemberRelation.SelectedValue = ""
+        ddlMemberSex.SelectedValue = ""
 
         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "mdlMember", "var myModal = new bootstrap.Modal(document.getElementById('mdlMember'), {});  myModal.show();", True)
     End Sub
@@ -253,8 +261,8 @@ Partial Class Secured_BFPIS_BrgyProfileAdd
         Dim dtCheck As New DataTable
 
         If hfMemberId.Value = "" Then
-            Dim sql As String = "SELECT trans_id,tbl_ref_relation.relation_desc FROM tbl_profile_member " & _
-                                "INNER JOIN tbl_ref_relation ON tbl_ref_relation.member_relation = tbl_ref_relation.trans_id " & _
+            Dim sql As String = "SELECT tbl_profile_member.trans_id,tbl_ref_relation.relation_desc FROM tbl_profile_member " & _
+                                "INNER JOIN tbl_ref_relation ON tbl_profile_member.member_relation = tbl_ref_relation.trans_id " & _
                                 "WHERE member_lname = '" & txtMemberLName.Text.Trim.ToUpper & "' AND member_fname = '" & txtMemberFName.Text.Trim.ToUpper & "' AND " & _
                                 "member_bdate = '" & CDate(dtpMemberBDate.Text).ToString("yyyy-MM-dd") & "' LIMIT 1 "
 
