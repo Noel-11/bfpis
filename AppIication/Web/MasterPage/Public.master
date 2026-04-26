@@ -1,0 +1,125 @@
+﻿<%@ Master Language="VB" CodeFile="Public.master.vb" Inherits="MasterPage_Public" %>
+
+<!DOCTYPE html>
+
+<%@ Register Src="~/Include/MyCaptchaWithIncrease.ascx" TagName="Captcha" TagPrefix="site" %>
+<%@ Register Src="~/Include/wucConfirmBoxBS5.ascx" TagName="wucConfirmBox" TagPrefix="wucConfirmBox" %>
+<%@ Register Src="~/Include/sFooterPublic.ascx" TagName="sFooter" TagPrefix="uc3" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>CCTMS</title>
+
+    <link rel="Shortcut Icon" href="~/Images/favicon.ico" type="image/x-icon" />
+
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3"></script>
+
+    <asp:ContentPlaceHolder ID="cpHead" runat="server">
+        <!-- fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com" rel="stylesheet" />
+
+        <link href="<%=ResolveClientUrl("~/Scripts/NiceAdmin/vendor/bootstrap/css/bootstrap.min.css")%>" rel="stylesheet" />
+
+        <link href="<%=ResolveClientUrl("~/Scripts/NiceAdmin/vendor/bootstrap-icons/bootstrap-icons.css")%>" rel="stylesheet" />
+
+        <link href="<%=ResolveClientUrl("~/Scripts/mycss/landing_page.css")%>" rel="stylesheet" />
+      
+         <link href="<%=ResolveClientUrl("~/Scripts/mycss/mycss.css")%>" rel="stylesheet" />
+
+        <script src="<%=ResolveClientUrl("~/Scripts/NiceAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js")%>"></script>
+
+        <script src="<%=ResolveClientUrl("~/Scripts/Bootstrap5/jquery.min.js")%>"></script>
+        <script src="<%=ResolveClientUrl("~/Scripts/block/blockui.js")%>"></script>
+
+         <!-- Template Main JS File -->
+    <script src="<%=ResolveClientUrl("~/Scripts/NiceAdmin/js/main.js")%>"></script>
+        <script src="<%=ResolveClientUrl("~/Scripts/myJS/myJs.js")%>"></script>
+
+        <!-- Password Validation -->
+        <link href="<%=ResolveClientUrl("~/Scripts/PwVal/pwVal.css")%>" rel="stylesheet" />
+        <script src="<%=ResolveClientUrl("~/Scripts/PwVal/pwVal.js")%>"></script>
+
+    </asp:ContentPlaceHolder>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1XJHHL63"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+</head>
+
+<body>
+
+    <form id="form1" role="form" method="post" runat="server" autocomplete="off" defaultbutton="btnDoNothing">
+        <asp:Button ID="btnDoNothing" runat="server" Enabled="false" Style="display: none;" />
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+             <Scripts>
+                <asp:ScriptReference Path="~/Scripts/block/UPBlock.js" />
+            </Scripts>
+        </asp:ScriptManager>
+
+         <div id="domMessage" class="loader-overlay">
+              <div class="custom-loader"></div>
+                                 
+         </div>
+
+         <!-- HEADER -->
+        <nav class="navbar navbar-expand-lg bg-white">
+            <div class="container-fluid">
+
+                <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a runat="server" id="anHome" class="nav-link" href="#">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a runat="server" id="anLogin" class="nav-link" href="#">LOGIN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a runat="server" id="anRegister" class="nav-link" href="#">REGISTER</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+         <!-- CONTENT -->
+         <div class="wrapper">
+             <asp:ContentPlaceHolder ID="cpConTent" runat="server">
+        </asp:ContentPlaceHolder>
+         </div>
+         
+
+        <!-- Footer -->
+        <uc3:sFooter ID="sFooter1" runat="server" />
+        <!-- End Footer -->
+
+        
+
+    </form>
+
+</body>
+</html>

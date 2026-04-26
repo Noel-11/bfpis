@@ -1,0 +1,161 @@
+﻿
+
+/*LOADER CODE*/
+
+.loader-overlay {
+    /*position:fixed;*/
+    display: none; /* hidden by default */
+    /*background: rgba(0, 0, 0, 0.4);*/ /* transparent dark background */
+    /*z-index: 1090;*/
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(4px);
+  
+
+}
+
+.custom-loader {
+    left: 50%;
+    top: 50%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 16px solid transparent;
+    border-right-color: #58a341;
+    position: absolute;
+    animation: s4 1s infinite;
+    /*z-index: 9999;*/
+}
+
+.custom-loader:before,
+.custom-loader:after {
+    content: "";
+    position: absolute;
+    inset: -16px;
+    border-radius: 50%;
+    border: inherit;
+    animation: inherit;
+    animation-duration: 2s;
+}
+
+.custom-loader:after {
+    animation-duration: 4s;
+}
+
+@keyframes s4 {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+/*LOADER CODE*/
+
+.modal {
+    z-index: 11 !important;
+}
+
+
+.modern-calendar .title {
+    background-color: #f8f9fa;
+    color: #212529 !important;
+    font-size: 30px !important;
+    font-weight: 700;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Navigation Links */
+.modern-calendar .title a {
+    background-color: white;
+    color: #1e3c72 !important;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 16px !important;
+    margin: 0 15px;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* Hover effect */
+.modern-calendar .title a:hover {
+    background-color: #ffc107;
+    color: black !important;
+    transform: scale(1.05);
+}
+
+/* Calendar Container */
+.modern-calendar {
+    width: 100% !important;
+    border: none !important;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Header (Month + Prev/Next) */
+.modern-calendar .title {
+    background-color: white !important;
+    font-size: 22px !important;
+    font-weight: 600;
+    color: #198754 !important;
+    padding: 15px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Day Headers (Sun, Mon, Tue...) */
+.modern-calendar th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+}
+
+/* Day Cells */
+.modern-calendar td {
+    height: 110px;
+    vertical-align: top;
+    padding: 6px;
+    border: 1px solid #dee2e6;
+    transition: 0.2s ease;
+}
+
+/* Hover Effect */
+.modern-calendar td:hover {
+    background-color: #f1f3f5;
+    cursor: pointer;
+}
+
+/* Normal Day */
+.modern-calendar .day {
+    background-color: #e9f7f7;
+}
+
+/* Other Month Days */
+.modern-calendar .otherMonth {
+    background-color: #ffffff !important;
+    color: #adb5bd !important;
+}
+
+/* Today */
+.modern-calendar .today {
+    background-color: #fff3cd !important;
+    border: 2px solid #ffc107 !important;
+}
+
+/* Selected */
+.modern-calendar .selected {
+    background-color: #0d6efd !important;
+    color: white !important;
+}
+
+/* Remove default link underline */
+.modern-calendar a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+
+/* TODAY Indicator */
+.today-highlight {
+    border: 2px solid #0d6efd !important;
+    background-color: #e7f1ff !important;
+    border-radius: 8px;
+}

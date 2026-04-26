@@ -1,0 +1,141 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeFile="Applicant.master.vb" Inherits="MasterPage_Applicant" %>
+
+<!DOCTYPE html>
+
+<%@ Register Src="~/Include/sFooterPublic.ascx" TagName="sFooter" TagPrefix="uc3" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head runat="server">
+
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="Shortcut Icon" href="~/Images/favicon.ico" type="image/x-icon" />
+    <title>CCTMS</title>
+
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <%--  --%>
+    <asp:ContentPlaceHolder ID="cpHead" runat="server">
+
+        <link href="<%=ResolveClientUrl("~/Scripts/NiceAdmin/vendor/bootstrap/css/bootstrap.min.css")%>" rel="stylesheet" />
+        <link href="<%=ResolveClientUrl("~/Scripts/mycss/Applicant.css")%>" rel="stylesheet" />
+
+        <link href="<%=ResolveClientUrl("~/Scripts/mycss/AppHeader.css")%>" rel="stylesheet" />
+
+        <script src="<%=ResolveClientUrl("~/Scripts/NiceAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js")%>"></script>
+           <link href="<%=ResolveClientUrl("~/Scripts/mycss/mycss.css")%>" rel="stylesheet" />
+
+        <script src="<%=ResolveClientUrl("~/Scripts/Bootstrap5/jquery.min.js")%>"></script>
+        <script src="<%=ResolveClientUrl("~/Scripts/block/blockui.js")%>"></script>
+
+          <!-- Password Validation -->
+        <link href="<%=ResolveClientUrl("~/Scripts/PwVal/pwVal.css")%>" rel="stylesheet" />
+        <script src="<%=ResolveClientUrl("~/Scripts/PwVal/pwVal.js")%>"></script>
+
+    </asp:ContentPlaceHolder>
+
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("ctl00_divMenu").classList.toggle("show");
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <form id="form1" role="form" method="post" runat="server" autocomplete="off" defaultbutton="btnDoNothing">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Path="~/Scripts/block/UPBlock.js" />
+            </Scripts>
+        </asp:ScriptManager>
+
+        <asp:Button ID="btnDoNothing" runat="server" Enabled="false" Style="display: none;" />
+
+        <div class="page-wrapper">
+
+            <!-- HEADER -->
+            <header class="app-header">
+                <div class="header-left">
+                    <button type="button" class="menu-toggle" onclick="toggleMenu()">☰</button>
+                    <img src="<%=ResolveClientUrl("~/Images/CCLogo.png")%>" alt="City College Logo" class="header-logo">
+                    <div class="header-title">
+                        <h1>City College Training Online Application</h1>
+                        <span>City College of Cagayan de Oro City</span>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <nav class="navbar navbar-expand-lg">
+                        <div class="container-fluid">
+                            <button class="navbar-toggler" type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#mainNavbar"
+                                aria-controls="mainNavbar"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="mainNavbar">
+                                <ul class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a runat="server" class="nav-link text-light" id="aProfile" href="#">PROFILE</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a runat="server" class="nav-link text-light" id="aLogout" href="#">LOGOUT</a>
+                                    </li>
+                                    <%--  <li class="nav-item">
+                            <a class="nav-link" href="#">REGISTER</a>
+                        </li>--%>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+
+                </div>
+            </header>
+
+            <!-- MAIN CONTENT -->
+            <main class="app-content">
+            <!-- sidebar + content here -->
+
+                <div class="layout">
+                <!-- LEFT SIDEBAR -->
+
+                <div runat="server" id="divMenu" class="sidebar me-4" >
+                    <asp:Button runat="server" Text="DASHBOARD" ID="btnDashboard" />
+                    <asp:Button runat="server" Text="AVAILABLE TRAININGS" ID="btnAvailable"  />
+                    <asp:Button runat="server" Text="UPCOMING TRAININGS" ID="btnUpcoming"  />
+                    <asp:Button runat="server" Text="COMPLETED TRAININGS" ID="btnComplete"  />
+                   
+                </div>
+                  
+                <!-- MAIN CONTENT -->
+                <div class="main-view">
+                     <asp:ContentPlaceHolder ID="cpConTent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+
+                    </div>
+         
+        </main>
+
+            <!-- FOOTER -->
+            <uc3:sFooter ID="sFooter1" runat="server" />
+
+        </div>
+
+        <div id="domMessage" class="loader-overlay">
+            <div class="custom-loader"></div>
+
+        </div>
+
+    </form>
+
+</body>
+</html>
+

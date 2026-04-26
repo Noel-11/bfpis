@@ -1,0 +1,70 @@
+﻿.password-tooltip{
+    position:absolute;
+    left:105%;
+    top:0;
+
+    width:200px;
+    background:#1f1f1f;
+    color:#f1c40f;
+
+    padding:15px;
+    border-radius:10px;
+
+    font-size:14px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateX(-10px);
+    transition:all .25s ease;
+
+    z-index:999;
+}
+
+/* arrow pointer */
+.password-tooltip::before{
+    content:"";
+    position:absolute;
+
+    left:-7px;
+    top:18px;
+
+    width:14px;
+    height:14px;
+
+    background:#1f1f1f;
+
+    transform:rotate(45deg);
+}
+
+.password-tooltip.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateX(0);
+}
+
+.password-tooltip p{
+    margin:4px 0;
+}
+
+.valid{
+    color:#2ecc71;
+}
+
+.invalid{
+    color:#e74c3c;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px){
+
+    .password-tooltip{
+        position: relative;
+        left: 0;
+        top: 5px;
+        width: 100%;
+    }
+
+}

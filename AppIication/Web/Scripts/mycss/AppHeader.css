@@ -1,0 +1,41 @@
+﻿.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2e7d32; /* matches your green */
+    color: #ffffff;
+    padding: 12px 24px;
+    border-bottom: 4px solid #1b5e20;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-logo {
+    height: 50px;
+    width: auto;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.header-title span {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.header-right .profile-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+    .header-right .profile-link:hover {
+        text-decoration: underline;
+    }
