@@ -210,7 +210,7 @@
                                 <ContentTemplate>
                                     <div class="card-header bg-success text-light">
                                         <span runat="server" id="span1" style="font-weight: bold;">MEMBER LIST</span>
-                                        <button type="button" runat="server" class="btn btn-info" id="btnAddService" tooltip="Click to Add Service"><i class="bi bi-plus-square"></i>&nbsp;</button>
+                                        <button type="button" runat="server" class="btn btn-info" id="btnAddMember" tooltip="Click to Add Member"><i class="bi bi-plus-square"></i>&nbsp;</button>
 
                                     </div>
 
@@ -258,7 +258,7 @@
 
     <!-- MODAL MEMBER DETAILS-->
     <div id="mdlMember" role="dialog" class="modal fade" aria-hidden="true" data-bs-backdrop="false" data-bs-keyboard="false">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-xl" style="border-style: solid;border-color: #2f92ff;border-radius: 12px">
             <div class="modal-content">
                 <asp:UpdatePanel runat="server" ID="UpdatePanel9">
                     <ContentTemplate>

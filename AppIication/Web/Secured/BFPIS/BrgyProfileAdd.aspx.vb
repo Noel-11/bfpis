@@ -140,9 +140,7 @@ Partial Class Secured_BFPIS_BrgyProfileAdd
 
         If hfTransId.Value <> "" Then
             isNew = False
-
-            ' dtOld = _clsRecord.browseClientInfoForLog(hfTransId.Value)
-
+            dtOld = _clsRecord.browseProfileHeadForLog(hfTransId.Value)
         End If
 
         With _clsRecord
@@ -163,45 +161,43 @@ Partial Class Secured_BFPIS_BrgyProfileAdd
             .economicStatus = ddlEconomicStatus.SelectedValue
             .saveProfileHead()
             hfTransId.Value = .transId
-
             Session("CLIENT_ID") = .transId
 
         End With
 
+        dtNew = _clsRecord.browseProfileHeadForLog(hfTransId.Value)
 
-        'dtNew = _clsRecord.browseClientInfoForLog(hfTransId.Value)
+        Dim clsLogs As New clsAuditTrail
 
-        'Dim clsLogs As New clsAuditTrail
+        If isNew Then
 
-        'If isNew Then
+            Dim newEntry As String = clsLogs.getTransactionNewEntry(dtNew)
 
-        '    Dim newEntry As String = clsLogs.getTransactionNewEntry(dtNew)
+            With clsLogs
+                .transModule = "ADD"
+                .transType = "BFPIS : FAMILY HEAD"
+                .linkID = hfTransId.Value
+                .loggedChanges = newEntry
+                .transBy = Session("UserName")
+                .saveAuditTrail()
+            End With
 
-        '    With clsLogs
-        '        .transModule = "ADD"
-        '        .transType = "PDIS : CLIENT INFO"
-        '        .linkID = hfTransId.Value
-        '        .loggedChanges = newEntry
-        '        .transBy = Session("UserName")
-        '        .saveAuditTrail()
-        '    End With
+        Else
 
-        'Else
+            Dim changes As String = clsLogs.getTransactionChanges(dtOld, dtNew)
 
-        '    Dim changes As String = clsLogs.getTransactionChanges(dtOld, dtNew)
+            If changes <> "" Then
+                With clsLogs
+                    .transModule = "UPDATE"
+                    .transType = "BFPIS : FAMILY HEAD"
+                    .linkID = hfTransId.Value
+                    .loggedChanges = changes
+                    .transBy = Session("UserName")
+                    .saveAuditTrail()
+                End With
+            End If
 
-        '    If changes <> "" Then
-        '        With clsLogs
-        '            .transModule = "UPDATE"
-        '            .transType = "PDIS : CLIENT INFO"
-        '            .linkID = hfTransId.Value
-        '            .loggedChanges = changes
-        '            .transBy = Session("UserName")
-        '            .saveAuditTrail()
-        '        End With
-        '    End If
-
-        'End If
+        End If
 
     End Sub
 
@@ -243,15 +239,15 @@ Partial Class Secured_BFPIS_BrgyProfileAdd
 
 #Region "FAMILY"
 
-    Protected Sub btnAddService_ServerClick(sender As Object, e As EventArgs) Handles btnAddService.ServerClick
+    Protected Sub btnAddService_ServerClick(sender As Object, e As EventArgs) Handles btnAddMember.ServerClick
         hfMemberId.Value = ""
 
         txtMemberLName.Text = ""
         txtMemberFName.Text = ""
         txtMemberMName.Text = ""
         ddlMemberExt.SelectedValue = ""
-        ddlMemberRelation.SelectedValue = ""
-        ddlMemberSex.SelectedValue = ""
+        ' ddlMemberRelation.SelectedValue = ""
+        'ddlMemberSex.SelectedValue = ""
 
         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "mdlMember", "var myModal = new bootstrap.Modal(document.getElementById('mdlMember'), {});  myModal.show();", True)
     End Sub
@@ -304,7 +300,7 @@ Partial Class Secured_BFPIS_BrgyProfileAdd
         If hfMemberId.Value <> "" Then
             isNew = False
 
-            ' dtOld = _clsRecord.browseClientServicesForLog(hfMemberId.Value)
+            dtOld = _clsRecord.browseProfileMemberForLog(hfMemberId.Value)
 
         End If
 
@@ -323,58 +319,42 @@ Partial Class Secured_BFPIS_BrgyProfileAdd
             hfMemberId.Value = .transId
         End With
 
-        'dtNew = _clsRecord.browseClientServicesForLog(hfMemberId.Value)
+        dtNew = _clsRecord.browseProfileMemberForLog(hfMemberId.Value)
 
-        'Dim clsLogs As New clsAuditTrail
+        Dim clsLogs As New clsAuditTrail
 
-        'If isNew Then
+        If isNew Then
 
-        '    Dim newEntry As String = clsLogs.getTransactionNewEntry(dtNew)
+            Dim newEntry As String = clsLogs.getTransactionNewEntry(dtNew)
 
-        '    With clsLogs
-        '        .transModule = "ADD"
-        '        .transType = "PDIS : CLIENT SERVICE"
-        '        .linkID = hfMemberId.Value
-        '        .loggedChanges = newEntry
-        '        .transBy = Session("UserName")
-        '        .saveAuditTrail()
-        '    End With
+            With clsLogs
+                .transModule = "ADD"
+                .transType = "BFPIS : FAMILY MEMBER"
+                .linkID = hfMemberId.Value
+                .loggedChanges = newEntry
+                .transBy = Session("UserName")
+                .saveAuditTrail()
+            End With
 
-        'Else
+        Else
 
-        '    Dim changes As String = clsLogs.getTransactionChanges(dtOld, dtNew)
+            Dim changes As String = clsLogs.getTransactionChanges(dtOld, dtNew)
 
-        '    If changes <> "" Then
-        '        With clsLogs
-        '            .transModule = "UPDATE"
-        '            .transType = "PDIS : CLIENT SERVICE"
-        '            .linkID = hfMemberId.Value
-        '            .loggedChanges = changes
-        '            .transBy = Session("UserName")
-        '            .saveAuditTrail()
-        '        End With
-        '    End If
+            If changes <> "" Then
+                With clsLogs
+                    .transModule = "UPDATE"
+                    .transType = "BFPIS : FAMILY MEMBER"
+                    .linkID = hfMemberId.Value
+                    .loggedChanges = changes
+                    .transBy = Session("UserName")
+                    .saveAuditTrail()
+                End With
+            End If
 
-        'End If
+        End If
 
 
-        'Dim dt As New DataTable
-
-        'dt = _clsDB.Fill_DataTable("SELECT trans_id FROM tbl_client_services " & _
-        '                           "WHERE client_id = '" & hfTransId.Value & "' AND is_active = 'Y' " & _
-        '                           "ORDER BY service_date DESC LIMIT 1")
-
-        'Dim _clsInfo As New clsClientInfo
-
-        'For Each dr As DataRow In dt.Rows
-
-        '    With _clsInfo
-        '        .transId = hfTransId.Value
-        '        .currService = dr(0)
-        '        .updateCurrentService()
-        '    End With
-
-        'Next
+     
 
 
     End Sub

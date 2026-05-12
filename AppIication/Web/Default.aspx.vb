@@ -64,7 +64,6 @@ Partial Class _Default
             Session("MODULE") = "BFPIS"
 
             'If _clsUser.verifyDefaultPassword(txtPassword.Value) = True Then
-
             '    Response.Redirect("~/Secured/SystemAdministration/adUserChangePassword.aspx")
             'Else
 

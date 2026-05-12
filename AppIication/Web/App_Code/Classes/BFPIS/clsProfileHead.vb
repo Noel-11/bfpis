@@ -71,7 +71,7 @@ Public Class clsProfileHead
         _extName = ""
         _addrBarangay = ""
         _addrOther = ""
-        _birthDate = ""
+        _birthDate = DateTime.Now.ToString("yyyy-MM-dd")
         _sex = ""
         _civilStatus = ""
         _religion = ""
@@ -89,6 +89,23 @@ Public Class clsProfileHead
         _lastUser = HttpContext.Current.Session("UserName")
         _lastDate = ""
     End Sub
+
+    Public Function browseProfileHeadForLog(ByVal _thisId As String) As DataTable
+        Dim sql As String = ""
+
+        sql = "SELECT tbl_profile_head.trans_id, last_name, first_name, middle_name, ext_name, tbl_ref_barangay.barangay AS addr_barangay, addr_other, " & _
+              "DATE_FORMAT(birth_date,'%m/%d/%Y') AS birth_date, sex, civil_status, tbl_ref_religion.religion_desc AS religion, " & _
+              "tbl_ref_occupation.occupation_desc AS occupation, monthly_income, cel_no, is_4ps, household_no, " & _
+              "tbl_ref_economic_status.economic_desc AS economic_status FROM tbl_profile_head " & _
+              "INNER JOIN tbl_ref_barangay ON tbl_profile_head.addr_barangay = tbl_ref_barangay.barangay_code " & _
+              "INNER JOIN tbl_ref_religion ON tbl_profile_head.religion = tbl_ref_religion.trans_id " & _
+              "INNER JOIN tbl_ref_occupation ON tbl_profile_head.occupation = tbl_ref_occupation.trans_id " & _
+              "INNER JOIN tbl_ref_economic_status ON tbl_profile_head.economic_status = tbl_ref_economic_status.trans_id " & _
+              "WHERE tbl_profile_head.is_active <> '' AND tbl_profile_head.trans_id = '" & _thisId & "' " & _
+              "LIMIT 1"
+
+        Return _clsDB.Fill_DataTable(sql, "tbl_profile_head")
+    End Function
 
 
     Public Function browseProfileHead(ByVal _criteria As String) As DataTable
@@ -124,7 +141,7 @@ Public Class clsProfileHead
             With _clsDB.dbUtility
                 .fieldItems = "trans_id,last_name,first_name,middle_name,ext_name,addr_barangay,addr_other,birth_date,sex,civil_status,religion,occupation,monthly_income,educ_level,cel_no,is_4ps,household_no,economic_status,is_active,entry_date,remarks,create_user,create_date"
                 .sqlString = .getSQLStatement("tbl_profile_head", "INSERT")
-                _transId = DateTime.Now.ToString("MMddyyyymmhhss") & Left(Guid.NewGuid().ToString.Replace("-", ""), 25).ToUpper
+                _transId = DateTime.Now.ToString("MMddyyyymmhhss") & Left(Guid.NewGuid().ToString.Replace("-", ""), 5).ToUpper
                 .ADDPARAM_CMD_String("trans_id", _transId)
                 .ADDPARAM_CMD_String("last_name", _lastName)
                 .ADDPARAM_CMD_String("first_name", _firstName)
@@ -152,7 +169,7 @@ Public Class clsProfileHead
             End With
         Else
             With _clsDB.dbUtility
-                .fieldItems = "last_name,first_name,middle_name,ext_name,addr_barangay,addr_other,birth_date,sex,civil_status,religion,occupation,monthly_income,educ_level,cel_no,is_4ps,household_no,economic_status,is_active,remarks,last_user,last_date"
+                .fieldItems = "last_name,first_name,middle_name,ext_name,addr_barangay,addr_other,birth_date,sex,civil_status,religion,occupation,monthly_income,educ_level,cel_no,is_4ps,household_no,economic_status,remarks,last_user,last_date"
                 .sqlString = .getSQLStatement("tbl_profile_head", "UPDATE", "trans_id")
                 .ADDPARAM_CMD_String("last_name", _lastName)
                 .ADDPARAM_CMD_String("first_name", _firstName)

@@ -61,6 +61,19 @@ Public Class clsProfileMember
         _lastDate = ""
     End Sub
 
+    Public Function browseProfileMemberForLog(ByVal _thisId As String) As DataTable
+        Dim sql As String = ""
+
+        sql = "SELECT tbl_profile_member.trans_id, head_id, CONCAT(member_lname,', ',member_fname,' ',member_ename,' ',member_mname) AS memberName, " & _
+              "member_lname, member_fname, member_mname, member_ename, " & _
+              "tbl_ref_relation.relation_desc AS member_relation, DATE_FORMAT(member_bdate,'%m/%d/%Y') AS member_bdate, " & _
+              "member_sex, member_remarks FROM tbl_profile_member " & _
+              "INNER JOIN tbl_ref_relation ON tbl_profile_member.member_relation = tbl_ref_relation.trans_id " & _
+              "WHERE tbl_profile_member.is_active = 'Y' AND tbl_profile_member.trans_id = '" & _thisId & "' " & _
+              "LIMIT 1 "
+
+        Return _clsDB.Fill_DataTable(sql, "tbl_profile_member")
+    End Function
 
     Public Function browseProfileMember(ByVal _thisId As String) As DataTable
         Dim sql As String = ""
@@ -100,7 +113,7 @@ Public Class clsProfileMember
             End With
         Else
             With _clsDB.dbUtility
-                .fieldItems = "head_id,member_lname,member_fname,member_mname,member_ename,member_relation,member_bdate,member_sex,is_active,member_remarks,last_user,last_date"
+                .fieldItems = "head_id,member_lname,member_fname,member_mname,member_ename,member_relation,member_bdate,member_sex,member_remarks,last_user,last_date"
                 .sqlString = .getSQLStatement("tbl_profile_member", "UPDATE", "trans_id")
                 .ADDPARAM_CMD_String("head_id", _headId)
                 .ADDPARAM_CMD_String("member_lname", _memberLname)
