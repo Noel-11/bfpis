@@ -10,7 +10,6 @@ Public Class clsProfileHead
         initialize()
     End Sub
 
-
 #Region "Properties"
     Public Property transId As String
 
@@ -62,7 +61,6 @@ Public Class clsProfileHead
 
 #End Region
 
-
     Public Sub initialize()
         _transId = ""
         _lastName = ""
@@ -95,11 +93,12 @@ Public Class clsProfileHead
 
         sql = "SELECT tbl_profile_head.trans_id, last_name, first_name, middle_name, ext_name, tbl_ref_barangay.barangay AS addr_barangay, addr_other, " & _
               "DATE_FORMAT(birth_date,'%m/%d/%Y') AS birth_date, sex, civil_status, tbl_ref_religion.religion_desc AS religion, " & _
-              "tbl_ref_occupation.occupation_desc AS occupation, monthly_income, cel_no, is_4ps, household_no, " & _
+              "tbl_ref_occupation.occupation_desc AS occupation, tbl_ref_educ.educ_desc AS educ_level, monthly_income, cel_no, is_4ps, household_no, " & _
               "tbl_ref_economic_status.economic_desc AS economic_status FROM tbl_profile_head " & _
               "INNER JOIN tbl_ref_barangay ON tbl_profile_head.addr_barangay = tbl_ref_barangay.barangay_code " & _
               "INNER JOIN tbl_ref_religion ON tbl_profile_head.religion = tbl_ref_religion.trans_id " & _
               "INNER JOIN tbl_ref_occupation ON tbl_profile_head.occupation = tbl_ref_occupation.trans_id " & _
+              "INNER JOIN tbl_ref_educ ON tbl_profile_head.educ_level = tbl_ref_educ.trans_id " & _
               "INNER JOIN tbl_ref_economic_status ON tbl_profile_head.economic_status = tbl_ref_economic_status.trans_id " & _
               "WHERE tbl_profile_head.is_active <> '' AND tbl_profile_head.trans_id = '" & _thisId & "' " & _
               "LIMIT 1"

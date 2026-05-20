@@ -19,30 +19,25 @@ Partial Class Secured_DashBoard
 
             ddlChartYear.SelectedValue = DateTime.Now.Year
 
-            getDetails()
+            'getDetails()
            
-            getColumnChartCategory(ddlCntBy.SelectedValue)
+            'getColumnChartCategory(ddlCntBy.SelectedValue)
 
         End If
 
     End Sub
-
-
 
     Protected Sub ddlAPPFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlAPPFilter.SelectedIndexChanged
         lblAPPCnt.Text = getStatusCnt(ddlAPPFilter.SelectedValue)
         lblAPPFilter.InnerText = ddlAPPFilter.SelectedItem.Text
     End Sub
 
-
     Private Sub getDetails()
 
         ddlAPPFilter.SelectedValue = "Today"
 
-
         lblAPPCnt.Text = getStatusCnt(ddlAPPFilter.SelectedValue)
         lblAPPFilter.InnerText = ddlAPPFilter.SelectedItem.Text
-
 
     End Sub
 
@@ -64,7 +59,7 @@ Partial Class Secured_DashBoard
 
         Dim sql As String = ""
 
-        sql = "SELECT COUNT(*) FROM tbl_client_services " & _
+        sql = "SELECT COUNT(*) FROM tbl_profile_head " & _
               "WHERE is_active = 'Y' " & sqlWhere
 
         dt = _clsDB.Fill_DataTable(sql)
@@ -81,7 +76,6 @@ Partial Class Secured_DashBoard
         Response.Redirect("Services/ClientRecord.aspx")
 
     End Sub
-
 
     Private Sub getColumnChartCategory(ByVal _thisCat As String)
 

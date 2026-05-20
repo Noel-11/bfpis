@@ -42,6 +42,8 @@ Partial Class Secured_BFPIS_BrgyProfileAdd
 
         _clsDB.populateDDLB(ddlOccupation, "occupation_desc", "trans_id", "tbl_ref_occupation", "sort_order", " WHERE is_active = 'Y' ", , "")
 
+        _clsDB.populateDDLB(ddlEducationalLevel, "educ_desc", "trans_id", "tbl_ref_educ", "sort_order", " WHERE is_active = 'Y' ", , "")
+
         _clsDB.populateDDLB(ddlEconomicStatus, "economic_desc", "trans_id", "tbl_ref_economic_status", "sort_order", " WHERE is_active = 'Y' ", , "")
 
 
@@ -115,6 +117,7 @@ Partial Class Secured_BFPIS_BrgyProfileAdd
                 ddlSex.SelectedValue = .sex
                 ddlReligion.SelectedValue = .religion
                 ddlOccupation.SelectedValue = .occupation
+                ddlEducationalLevel.SelectedValue = .educLevel
                 txtMonthlyIncome.Text = .monthlyIncome
                 ddlEconomicStatus.SelectedValue = .economicStatus
                 lblLastUserDetails.InnerText = "Create User: " & .createUser & " " & .createDate
@@ -157,6 +160,7 @@ Partial Class Secured_BFPIS_BrgyProfileAdd
             .sex = ddlSex.SelectedValue
             .religion = ddlReligion.SelectedValue
             .occupation = ddlOccupation.SelectedValue
+            .educLevel = ddlEducationalLevel.SelectedValue
             .monthlyIncome = txtMonthlyIncome.Text.Trim.ToUpper
             .economicStatus = ddlEconomicStatus.SelectedValue
             .saveProfileHead()

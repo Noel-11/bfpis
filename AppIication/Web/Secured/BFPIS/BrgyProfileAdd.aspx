@@ -169,6 +169,15 @@
                                                 </div>
                                             </div>
 
+                                               <div class="col-lg-4">
+                                                <div class="input-group">
+                                                    <label class="input-group-text">Educational Level</label>
+                                                    <asp:DropDownList runat="server" CssClass="form-select" ID="ddlEducationalLevel">
+                                                    </asp:DropDownList>
+                                                </div>
+
+                                            </div>
+
                                             <div class="col-lg-4">
                                                 <div class="input-group">
                                                     <label class="input-group-text">Economic Status</label>
